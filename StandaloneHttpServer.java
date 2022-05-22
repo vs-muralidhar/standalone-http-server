@@ -6,8 +6,11 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.UUID;
 import java.util.concurrent.Executors;
+import java.util.logging.Logger;
 
 public class StandaloneHttpServer {
+
+    private static final Logger logger = Logger.getLogger(StandaloneHttpServer.class.getName());
 
     static final String TRACE_ID = "x-vs-trace-id";
 
@@ -16,7 +19,7 @@ public class StandaloneHttpServer {
         exchange.getResponseHeaders().set("Content-type", "application/json");
         String responseTextForGET = "Hello World GET!", responseTextForPOST = "{\"name\":\"fnu\"}";
 
-        System.out.println("Thread Name" + Thread.currentThread().getName());
+        logger.info("Thread Name" + Thread.currentThread().getName());
 
         switch (exchange.getRequestMethod()) {
             case "GET":
